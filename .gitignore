@@ -1,0 +1,92 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environment
+backend_venv/
+frontend_venv/
+backend/backend_venv/
+frontend/frontend_venv/
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs
+*.log
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Backup versions
+frontend/backup_versions/
+backend/backup_versions/
+
+# Streamlit cache (KHÔNG ignore config.toml)
+.streamlit/cache/
+.streamlit/*.wal
+.streamlit/*.db
+
+# Docker volumes & data
+volumes/
+data/*.db
+data/*.sqlite
+
+# Docker
+docker-compose.override.yml
+*.tar
+
+# Environment variables (nếu có)
+.env
+.env.local
+.env.*.local
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pytest
+.pytest_cache/
+pytest_debug.log
+
+# Documentation build
+docs/_build/
+site/
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+*~.nib
+local_settings.py
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
