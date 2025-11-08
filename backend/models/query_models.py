@@ -1,0 +1,32 @@
+from pydantic import BaseModel
+
+class CitizenFacts(BaseModel):
+    tuoi: int = 20
+    duoc_tam_hoan_vi_hoc: bool = False
+    loai_suc_khoe: int = 3
+    do_can_thi: float = 0.0
+    vien_thi: bool = False
+    nghien_ma_tuy: bool = False
+    nhiem_HIV_AIDS: bool = False
+    chi_so_BMI: float = 22.0
+    trinh_do_van_hoa: int = 12
+    dia_phuong_kho_khan_giao_quan: bool = False
+    vung_dac_biet_kho_khan: bool = False
+    dan_toc_thieu_so_duoi_10000: bool = False
+    du_suc_khoe_phuc_vu: bool = True
+    lao_dong_duy_nhat: bool = False
+    gia_dinh_thiet_hai_nang_khong_con_ld_khac: bool = False
+    la_con_benh_binh_cd_61_80: bool = False
+    co_anh_chi_em_dang_phuc_vu_tai_ngu: bool = False
+    thuoc_dien_di_dan_3_nam_dau: bool = False
+    dang_hoc_giao_duc_pho_thong: bool = False
+    dang_hoc_dh_cd_chinh_quy: bool = False
+    la_con_cua_liet_si: bool = False
+    la_con_cua_thuong_binh_hang_mot: bool = False
+    la_anh_hoac_em_trai_cua_liet_si: bool = False
+    la_mot_con_cua_thuong_binh_hang_hai: bool = False
+    la_mot_con_benh_binh_cd_81_tro_len: bool = False
+    la_mot_con_cdac_cd_81_tro_len: bool = False
+    lam_cong_tac_co_yeu_khong_phai_quan_nhan: bool = False
+    thoi_gian_cong_tac_vung_dbkk_thang: int = 0
+    tinh_nguyen_nhap_ngu: bool = False
