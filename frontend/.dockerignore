@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environment
+frontend_venv/
+venv/
+env/
+ENV/
+
+# Backup versions
+backup_versions/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs
+*.log
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Git
+.git/
+.gitignore
+
+# Streamlit cache only (keep config.toml)
+.streamlit/cache/
+.streamlit/
