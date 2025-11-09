@@ -26,7 +26,7 @@ Truy cập:
 - **Backend**: http://localhost:8000
 - **API Docs**: http://localhost:8000/docs
 
-Xem thêm: [DOCKER_GUIDE.md](DOCKER_GUIDE.md)
+Xem thêm: [docs/DOCKER_SETUP.md](docs/DOCKER_SETUP.md)
 
 ---
 
