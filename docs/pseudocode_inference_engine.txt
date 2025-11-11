@@ -1,0 +1,90 @@
+ALGORITHM: Forward-Chaining Inference Engine
+
+INPUT: initial_facts (dictionary chứa thông tin công dân)
+OUTPUT: (ket_luan, giai_thich, solution_trace)
+
+BEGIN
+
+    // 1. KHỞI TẠO
+    Known_Facts = initial_facts.copy()
+    Known_Facts["KET_LUAN"] = "Không thể đưa ra kết luận"
+    Known_Facts["GIAI_THICH"] = "Không có luật nào phù hợp"
+    Known_Facts["FINAL_STOP"] = False
+    Known_Facts["LY_DO_TONG_HOP"] = []
+    
+    Solution_Trace = {}  // Dictionary lưu các luật đã kích hoạt
+    new_facts_found = True
+    
+    PRINT "Starting forward chaining inference..."
+    
+    
+    // 2. VÒNG LẶP SUY DIỄN CHÍNH
+    WHILE new_facts_found == True DO
+        
+        new_facts_found = False
+        
+        // Duyệt qua tất cả các luật (đã sắp xếp theo priority)
+        FOR EACH rule IN self.rules DO
+            
+            // Kiểm tra luật chưa được kích hoạt
+            IF rule.id NOT IN Solution_Trace THEN
+                
+                // Đánh giá điều kiện của luật
+                IF _evaluate_rule(rule, Known_Facts) == True THEN
+                    
+                    PRINT "Rule triggered:", rule.id
+                    new_facts_found = True
+                    Solution_Trace[rule.id] = rule
+                    
+                    
+                    // 3. THỰC THI CÁC HÀNH ĐỘNG (ACTIONS)
+                    FOR EACH action IN rule.actions DO
+                        
+                        fact_name = action.fact
+                        
+                        // Xử lý hành động đặc biệt: Tổng hợp kết luận cuối
+                        IF fact_name == "COMPILE_FINAL_RESULT" THEN
+                            _compile_final_result(Known_Facts)
+                        
+                        // Xử lý hành động: Thêm vào danh sách lý do
+                        ELSE IF action.has_key("add_to_list") THEN
+                            value = action.add_to_list
+                            IF value NOT IN Known_Facts["LY_DO_TONG_HOP"] THEN
+                                Known_Facts["LY_DO_TONG_HOP"].append(value)
+                        
+                        // Xử lý hành động: Gán giá trị mới cho fact
+                        ELSE IF action.has_key("value") THEN
+                            Known_Facts[fact_name] = action.value
+                            
+                            // Kiểm tra điều kiện dừng sớm (Tình nguyện)
+                            IF fact_name == "FINAL_STOP" AND action.value == True THEN
+                                PRINT "Volunteer detected, stopping priority inference"
+                                new_facts_found = False
+                                BREAK  // Thoát vòng lặp actions
+                            END IF
+                        END IF
+                    END FOR
+                    
+                    
+                    // Nếu FINAL_STOP được kích hoạt, dừng toàn bộ
+                    IF new_facts_found == False THEN
+                        BREAK  // Thoát vòng lặp rules
+                    END IF
+                    
+                    // Luật đã kích hoạt -> Bắt đầu lại từ luật đầu tiên
+                    BREAK  // Thoát vòng lặp rules, quay lại WHILE
+                    
+                END IF  // End evaluate_rule
+            END IF  // End rule not in trace
+        END FOR  // End for each rule
+    END WHILE  // End while new_facts_found
+    
+    
+    // 4. TRẢ VỀ KẾT QUẢ
+    PRINT "Inference completed"
+    ket_luan = Known_Facts["KET_LUAN"]
+    giai_thich = Known_Facts["GIAI_THICH"]
+    
+    RETURN (ket_luan, giai_thich, Solution_Trace)
+
+END ALGORITHM
