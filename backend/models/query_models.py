@@ -1,9 +1,10 @@
 from pydantic import BaseModel
+from typing import Optional
 
 class CitizenFacts(BaseModel):
     tuoi: int = 20
     duoc_tam_hoan_vi_hoc: bool = False
-    loai_suc_khoe: int = 3
+    loai_suc_khoe: Optional[int] = None  # Deprecated - system auto-determines from health criteria
     do_can_thi: float = 0.0
     vien_thi: bool = False
     nghien_ma_tuy: bool = False

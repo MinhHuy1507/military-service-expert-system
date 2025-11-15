@@ -5,7 +5,7 @@ from inference_engine_v4 import InferenceEngine
 app = FastAPI(title="Hệ cơ sở tri thức hỗ trợ tuyển chọn và tư vấn nghĩa vụ quân sự", version="1.0.0")
 
 try:
-    engine = InferenceEngine("data/CSTT_v4.json")
+    engine = InferenceEngine("data/CSTT_v5.json")
 except Exception as e:
     print(f"Không thể nạp Bộ suy diễn. Lỗi: {e}")
     engine = None

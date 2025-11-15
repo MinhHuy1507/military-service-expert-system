@@ -144,7 +144,7 @@ with st.form("citizen_form"):
         with col1:
             tuoi = st.number_input("Tuổi", 10, 35, 20)
             chieu_cao = st.number_input("Chiều cao (cm)", 140, 220, 170)
-            can_nang = st.number_input("Cân nằng (kg)", 30, 150, 65)
+            can_nang = st.number_input("Cân nặng (kg)", 30, 150, 65)
             
             # Automatically calculate BMI from weight and height
             chi_so_BMI = can_nang / ((chieu_cao * 0.01) ** 2)
@@ -183,33 +183,35 @@ with st.form("citizen_form"):
             )
 
 
-    # TAB 2: Health Standards (health classification, myopia, hyperopia, HIV/AIDS, drug addiction)
+    # TAB 2: Health Standards (myopia, hyperopia, HIV/AIDS, drug addiction, BMI)
     with tab2:
         st.markdown("###  Tiêu chuẩn Sức khỏe")
+        st.info("ℹ️ **Lưu ý:** Hệ thống sẽ tự động đánh giá sức khỏe dựa trên các tiêu chí cụ thể bên dưới.")
+        
         col1, col2 = st.columns(2)
         
         with col1:
-            loai_suc_khoe_options = {
-                1: "Loại 1 - Hoàn toàn khỏe mạnh",
-                2: "Loại 2 - Khá",
-                3: "Loại 3 - Trung bình",
-                4: "Loại 4 - Yếu",
-                5: "Loại 5 - Rất yếu",
-                6: "Loại 6 - Không đủ sức khỏe phục vụ"
-            }
-            loai_suc_khoe = st.selectbox(
-                "Loại sức khỏe",
-                list(loai_suc_khoe_options.keys()),
-                format_func=lambda x: loai_suc_khoe_options[x],
-                index=2,
-                help="Đây là kết quả từ Hội đồng Khám sức khỏe. Nếu bạn chưa khám, hãy tạm thời để Loại 3 (loại phổ biến, đủ tiêu chuẩn)."
+            # Hidden field - system will auto-determine health classification
+            # loai_suc_khoe is removed from user input, system evaluates based on criteria
+            do_can_thi = st.number_input(
+                "Độ cận thị (Diop)", 
+                0.0, 20.0, 0.0, 0.25,
+                help="Độ cận thị của mắt. Quy định: Cận thị > 1.5 diop sẽ không đạt tiêu chuẩn."
             )
-            do_can_thi = st.number_input("Độ cận thị (Diop)", 0.0, 20.0, 0.0, 0.25)
             
         with col2:
-            vien_thi = st.checkbox("Bị viễn thị")
-            nghien_ma_tuy = st.checkbox("Nghiện ma túy")
-            nhiem_HIV_AIDS = st.checkbox("Nhiễm HIV/AIDS")
+            vien_thi = st.checkbox(
+                "Bị viễn thị",
+                help="Viễn thị ở mọi mức độ đều không đạt tiêu chuẩn."
+            )
+            nghien_ma_tuy = st.checkbox(
+                "Nghiện ma túy",
+                help="Công dân nghiện ma túy không được gọi nhập ngũ."
+            )
+            nhiem_HIV_AIDS = st.checkbox(
+                "Nhiễm HIV/AIDS",
+                help="Công dân nhiễm HIV/AIDS không được gọi nhập ngũ."
+            )
     
     # TAB 3: Deferment Cases (health, education, family, labor)
     with tab3:
@@ -302,10 +304,11 @@ with st.form("citizen_form"):
 
 # Handle when user clicks the Consult button
 if submitted:
+    # Prepare data to send to Backend API
     payload = {
         "tuoi": tuoi,
         "duoc_tam_hoan_vi_hoc": duoc_tam_hoan_vi_hoc,
-        "loai_suc_khoe": loai_suc_khoe,
+        # "loai_suc_khoe" removed - system auto-determines based on health criteria
         "do_can_thi": do_can_thi,
         "vien_thi": vien_thi,
         "nghien_ma_tuy": nghien_ma_tuy,
