@@ -216,76 +216,137 @@ with st.form("citizen_form"):
     # TAB 3: Deferment Cases (health, education, family, labor)
     with tab3:
         st.markdown("###  Trường hợp Tạm hoãn")
-        chua_du_suc_khoe = st.checkbox(
-            "Chưa đủ sức khỏe phục vụ (theo kết luận của Hội đồng Khám sức khỏe)",
-            value=False,
-            help="Mặc định hệ thống coi là 'Đủ sức khỏe'. Chỉ TICK vào mục này nếu Hội đồng Khám sức khỏe kết luận bạn CHƯA ĐỦ sức khỏe phục vụ."
-        )
-        # Reversed logic: checkbox is "Not sufficient", API variable is "Sufficient" = NOT checkbox
-        du_suc_khoe_phuc_vu = not chua_du_suc_khoe
-        dang_hoc_giao_duc_pho_thong = st.checkbox("Đang học phổ thông")
-        dang_hoc_dh_cd_chinh_quy = st.checkbox("Đang học Đại học / Cao đẳng")
-        lao_dong_duy_nhat = st.checkbox(
-            "Là lao động duy nhất",
-            help="Chọn mục này nếu bạn là người lao động duy nhất, phải trực tiếp nuôi dưỡng thân nhân (như cha mẹ già, con nhỏ...) không còn khả năng lao động hoặc chưa đến tuổi lao động."
-        )
-        gia_dinh_thiet_hai_nang_khong_con_ld_khac = st.checkbox(
-            "Gia đình thiệt hại nặng do thiên tai, không còn lao động khác",
-            help="Chọn mục này nếu gia đình bạn bị thiệt hại nặng về người và tài sản do tai nạn, thiên tai, dịch bệnh nguy hiểm gây ra và được Ủy ban nhân dân cấp xã xác nhận là không còn người lao động nào khác."
-        )
-        co_anh_chi_em_dang_phuc_vu_tai_ngu = st.checkbox(
-            "Có anh/chị/em đang phục vụ tại ngũ",
-            help="Chọn mục này nếu bạn có anh, chị, hoặc em ruột đang là hạ sĩ quan, binh sĩ phục vụ tại ngũ (trong Quân đội) HOẶC đang thực hiện nghĩa vụ tham gia Công an nhân dân."
-        )
-        la_con_benh_binh_cd_61_80 = st.checkbox(
-            "Con của bệnh binh, người nhiễm chất độc da cam suy giảm khả năng lao động (61% - 80%)",
-            help="Là con của bệnh binh hoặc người nhiễm chất độc da cam có mức suy giảm khả năng lao động từ 61% đến 80%."
-        )
-        thuoc_dien_di_dan_3_nam_dau = st.checkbox(
-            "Thuộc diện di dân trong 03 năm đầu",
-            help="Thuộc diện di dân, giãn dân trong 03 năm đầu đến các xã đặc biệt khó khăn theo dự án phát triển kinh tế - xã hội của Nhà nước."
-        )
+        st.info("ℹ️ Nếu thuộc một trong các trường hợp dưới đây, bạn sẽ được tạm hoãn gọi nhập ngũ.")
+        
+        # GROUP 1: Health Status
+        with st.expander("🏥 **Sức khỏe**", expanded=False):
+            st.info("Chọn mục này khi Hội đồng Khám sức khỏe kết luận CHƯA ĐỦ sức khỏe phục vụ.")
+            chua_du_suc_khoe = st.checkbox(
+                "Chưa đủ sức khỏe phục vụ (theo kết luận Hội đồng Khám sức khỏe)",
+                value=False,
+                help="Hội đồng Khám sức khỏe kết luận CHƯA ĐỦ sức khỏe phục vụ."
+            )
+            du_suc_khoe_phuc_vu = not chua_du_suc_khoe
+        
+        # GROUP 2: Education Status (Mutually Exclusive)
+        with st.expander("📚 **Đang theo học**", expanded=False):
+            st.info("Chọn cấp học đang theo học:")
+            education_status = st.radio(
+                "Trạng thái học tập",
+                ["Không đang học", "Đang học phổ thông", "Đang học Đại học / Cao đẳng"],
+                index=0,
+                help="Chọn nếu như bạn hiện đang theo học tại một cơ sở giáo dục phổ thông, đại học hoặc cao đẳng.",
+                label_visibility="collapsed"
+            )
+            dang_hoc_giao_duc_pho_thong = (education_status == "Đang học phổ thông")
+            dang_hoc_dh_cd_chinh_quy = (education_status == "Đang học Đại học / Cao đẳng")
+        
+        # GROUP 3: Family Circumstances (Can combine)
+        with st.expander("👨‍👩‍👧 **Hoàn cảnh gia đình**", expanded=False):
+            st.info("Chọn nếu bạn thuộc 1 trong những hoàn cảnh gia đình sau đây:")
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                lao_dong_duy_nhat = st.checkbox(
+                    "Là lao động duy nhất",
+                    help="Là người lao động duy nhất, trực tiếp nuôi dưỡng thân nhân không có khả năng lao động."
+                )
+                
+                gia_dinh_thiet_hai_nang_khong_con_ld_khac = st.checkbox(
+                    "Gia đình thiệt hại nặng, không còn lao động khác",
+                    help="Gia đình thiệt hại nặng do thiên tai, dịch bệnh và được UBND xã xác nhận không còn lao động khác."
+                )
+            
+            with col2:
+                co_anh_chi_em_dang_phuc_vu_tai_ngu = st.checkbox(
+                    "Có anh/chị/em đang phục vụ tại ngũ",
+                    help="Có anh, chị, em ruột đang là hạ sĩ quan, binh sĩ trong Quân đội hoặc Công an nhân dân."
+                )
+                
+                la_con_benh_binh_cd_61_80 = st.checkbox(
+                    "Con bệnh binh/nhiễm chất độc (61-80%)",
+                    help="Con của bệnh binh hoặc người nhiễm chất độc da cam, suy giảm khả năng lao động 61%-80%."
+                )
+        
+        # GROUP 4: Special Circumstances
+        with st.expander("🏘️ **Trường hợp đặc biệt**", expanded=False):
+            st.info("Chọn mục này nếu bạn thuộc diện di dân, giãn dân trong 03 năm đầu đến các xã đặc biệt khó khăn theo dự án phát triển Kinh tế - Xã hội của Nhà nước.")
+            thuoc_dien_di_dan_3_nam_dau = st.checkbox(
+                "Thuộc diện di dân, giãn dân trong 03 năm đầu"
+            )
         
         
     
     # TAB 4: Exemption Cases (martyr's children, wounded soldiers, classified work)
     with tab4:
         st.markdown("###  Trường hợp Miễn")
-        la_con_cua_liet_si = st.checkbox(
-            "Con liệt sĩ",
-            help="Là con của liệt sĩ hy sinh vì sự nghiệp cách mạng."
-        )
-        la_con_cua_thuong_binh_hang_mot = st.checkbox(
-            "Con thương binh hạng 1",
-            help="Là con của thương binh hạng 1, bị thương trong chiến đấu và được xếp hạng cao nhất."
-        )
-        la_anh_hoac_em_trai_cua_liet_si = st.checkbox(
-            "Anh/em của liệt sĩ",
-            help="Là anh ruột hoặc em trai ruột của liệt sĩ."
-        )
-        la_mot_con_cua_thuong_binh_hang_hai = st.checkbox(
-            "Con duy nhất của thương binh hạng 2",
-            help="Pháp luật quy định 'Một con' của thương binh hạng 2 được miễn. Chọn mục này nếu bạn là người con (duy nhất) trong gia đình xin hưởng quyền miễn này."
-        )
-        la_mot_con_benh_binh_cd_81_tro_len = st.checkbox(
-            "Con duy nhất của bệnh binh suy giảm khả năng lao động (81%+)",
-            help="Pháp luật quy định 'Một con' của bệnh binh (suy giảm 81%+) được miễn. Chọn mục này nếu bạn là người con (duy nhất) trong gia đình xin hưởng quyền miễn này."
-        )
-        la_mot_con_cdac_cd_81_tro_len = st.checkbox(
-            "Con duy nhất của người nhiễm chất độc da cam suy giảm khả năng lao động (81%+)",
-            help="Pháp luật quy định 'Một con' của người nhiễm chất độc da cam (suy giảm 81%+) được miễn. Chọn mục này nếu bạn là người con (duy nhất) trong gia đình xin hưởng quyền miễn này."
-        )
-        lam_cong_tac_co_yeu_khong_phai_quan_nhan = st.checkbox(
-            "Làm công tác cơ yếu (không phải quân nhân, CAND)",
-            help="Đang làm công tác mật mã, cơ yếu mà không phải là quân nhân hoặc công an nhân dân."
-        )
-        thoi_gian_cong_tac_vung_dbkk_thang = st.number_input(
-            "Số tháng công tác tại vùng đặc biệt khó khăn (Là cán bộ, công chức, viên chức, thanh niên xung phong)",
-            min_value=0,
-            value=0,
-            step=1,
-            help="Nếu bạn Là cán bộ, công chức, viên chức, thanh niên xung phong công tác tại vùng kinh tế - xã hội đặc biệt khó khăn, hãy nhập tổng số tháng đã công tác. Hệ thống sẽ tự động xét Tạm hoãn (dưới 24 tháng) hoặc Miễn (từ 24 tháng trở lên)."
-        )
+        st.info("ℹ️ Nếu thuộc một trong các trường hợp dưới đây, bạn sẽ được miễn nghĩa vụ quân sự.")
+        
+        # GROUP 1: Absolute Exemptions (Can select multiple)
+        with st.expander("⭐ **Miễn tuyệt đối**", expanded=False):
+            st.info("Chọn mục này nếu bạn thuộc diện được miễn tuyệt đối theo quy định của pháp luật.")
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                la_con_cua_liet_si = st.checkbox(
+                    "Con liệt sĩ",
+                    help="Con của liệt sĩ hy sinh vì sự nghiệp cách mạng."
+                )
+                
+                la_con_cua_thuong_binh_hang_mot = st.checkbox(
+                    "Con thương binh hạng 1",
+                    help="Con của thương binh hạng 1 (bị thương nặng nhất trong chiến đấu)."
+                )
+            
+            with col2:
+                la_anh_hoac_em_trai_cua_liet_si = st.checkbox(
+                    "Anh/em trai của liệt sĩ",
+                    help="Là anh ruột hoặc em trai ruột của liệt sĩ."
+                )
+                
+                lam_cong_tac_co_yeu_khong_phai_quan_nhan = st.checkbox(
+                    "Làm công tác cơ yếu",
+                    help="Đang làm công tác mật mã, cơ yếu (không phải quân nhân, CAND)."
+                )
+        
+        # GROUP 2: 'Only Child' Exemptions (Mutually Exclusive)
+        with st.expander("👶 **Con duy nhất**: ", expanded=False):
+            st.info("Pháp luật quy định 'Một con' được miễn. Chọn mục này nếu bạn là người con (duy nhất) trong gia đình xin hưởng quyền miễn này.")
+            
+            only_child_status = st.radio(
+                "Chọn trường hợp con duy nhất",
+                [
+                    "Không thuộc diện",
+                    "Con duy nhất của thương binh hạng 2",
+                    "Con duy nhất của bệnh binh (suy giảm 81%+)",
+                    "Con duy nhất của người nhiễm chất độc da cam (suy giảm 81%+)"
+                ],
+                index=0,
+                help="Chỉ chọn MỘT trường hợp 'con duy nhất' mà bạn thuộc về.",
+                label_visibility="collapsed"
+            )
+            
+            la_mot_con_cua_thuong_binh_hang_hai = (only_child_status == "Con duy nhất của thương binh hạng 2")
+            la_mot_con_benh_binh_cd_81_tro_len = (only_child_status == "Con duy nhất của bệnh binh (suy giảm 81%+)")
+            la_mot_con_cdac_cd_81_tro_len = (only_child_status == "Con duy nhất của người nhiễm chất độc da cam (suy giảm 81%+)")
+        
+        # GROUP 3: Work-related Exemption/Deferment
+        with st.expander("💼 **Công tác vùng đặc biệt khó khăn**", expanded=False):
+            st.info("Nếu bạn Là cán bộ, công chức, viên chức, thanh niên xung phong công tác tại vùng kinh tế - xã hội đặc biệt khó khăn, hãy nhập tổng số tháng đã công tác. Hệ thống sẽ tự động xét Tạm hoãn (dưới 24 tháng) hoặc Miễn (từ 24 tháng trở lên).")
+            thoi_gian_cong_tac_vung_dbkk_thang = st.slider(
+                "Số tháng công tác tại vùng đặc biệt khó khăn",
+                min_value=0,
+                max_value=60,
+                value=0,
+                step=1,
+                help="< 24 tháng: Tạm hoãn | ≥ 24 tháng: Miễn nghĩa vụ"
+            )
+            
+            if thoi_gian_cong_tac_vung_dbkk_thang > 0:
+                if thoi_gian_cong_tac_vung_dbkk_thang < 24:
+                    st.info(f"ℹ️ {thoi_gian_cong_tac_vung_dbkk_thang} tháng → **Tạm hoãn** (cần ≥24 tháng để miễn)")
+                else:
+                    st.success(f"✅ {thoi_gian_cong_tac_vung_dbkk_thang} tháng → **Miễn nghĩa vụ**")
 
     
     # TAB 5: Voluntary Enlistment
