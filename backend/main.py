@@ -18,10 +18,10 @@ def read_root():
 def run_consultation(facts: CitizenFacts):
     """
     Main endpoint for running the consultation.
-    Accepts 32 input facts and returns the inference results.
+    Accepts 29 input facts and returns the inference results.
     """
     if not engine:
-        return {"error": "Lỗi: Bộ suy diễn chưa được nạp. Kiểm tra file CSTT_v4.json."}
+        return {"error": "Lỗi: Bộ suy diễn chưa được nạp. Kiểm tra file CSTT_v5.json."}
     
     initial_facts = facts.dict()
     ket_luan, giai_thich, solution_trace = engine.evaluate(initial_facts)
@@ -29,7 +29,7 @@ def run_consultation(facts: CitizenFacts):
     # Filter intermediate rules to send to the frontend
     relevant_rules = [
         rule for rule in solution_trace.values() 
-        if not rule['id'].startswith("R_FINAL")
+        if not rule['id'].startswith("FINAL")
     ]
     
     return {

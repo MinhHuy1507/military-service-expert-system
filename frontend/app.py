@@ -436,15 +436,15 @@ if st.session_state.result:
             # Iterate through rules and categorize by ID
             for rule in result["trace"]:
                 rule_id = rule.get("id", "")
-                if "R_TUOI" in rule_id:
+                if "TUOI" in rule_id:
                     rules_by_category["TUOI"].append(rule)
-                elif "R_SK" in rule_id:
+                elif "SK" in rule_id:
                     rules_by_category["SUC_KHOE"].append(rule)
-                elif "R_VH" in rule_id:
+                elif "VH" in rule_id:
                     rules_by_category["VAN_HOA"].append(rule)
-                elif "R_TAM_HOAN" in rule_id:
+                elif "TAM_HOAN" in rule_id:
                     rules_by_category["TAM_HOAN"].append(rule)
-                elif "R_MIEN" in rule_id:
+                elif "MIEN" in rule_id:
                     rules_by_category["MIEN"].append(rule)
             
             for title, rules in [("Tuổi", rules_by_category["TUOI"]),

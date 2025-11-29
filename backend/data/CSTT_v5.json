@@ -1,7 +1,7 @@
 {
     "rules": [
         {
-            "id": "R_TUOI_1",
+            "id": "TUOI_1",
             "description": "Đạt chuẩn thông thường (18-25 tuổi)",
             "citation": "Điều 30, Luật Nghĩa vụ quân sự số 78/2015/QH13",
             "quote": "Công dân đủ 18 tuổi được gọi nhập ngũ; độ tuổi gọi nhập ngũ từ đủ 18 tuổi đến hết 25 tuổi; công dân được đào tạo trình độ cao đẳng, đại học đã được tạm hoãn gọi nhập ngũ thì độ tuổi gọi nhập ngũ đến hết 27 tuổi.",
@@ -29,7 +29,7 @@
             ]
         },
         {
-            "id": "R_TUOI_2",
+            "id": "TUOI_2",
             "description": "Đạt chuẩn có hoãn học (đến 27 tuổi)",
             "citation": "Điều 30, Luật Nghĩa vụ quân sự số 78/2015/QH13",
             "quote": "Công dân đủ 18 tuổi được gọi nhập ngũ; độ tuổi gọi nhập ngũ từ đủ 18 tuổi đến hết 25 tuổi; công dân được đào tạo trình độ cao đẳng, đại học đã được tạm hoãn gọi nhập ngũ thì độ tuổi gọi nhập ngũ đến hết 27 tuổi.",
@@ -62,7 +62,7 @@
             ]
         },
         {
-            "id": "R_TUOI_3",
+            "id": "TUOI_3",
             "description": "Không đạt - dưới tuổi",
             "citation": "Điều 30, Luật Nghĩa vụ quân sự số 78/2015/QH13",
             "quote": "Công dân đủ 18 tuổi được gọi nhập ngũ; độ tuổi gọi nhập ngũ từ đủ 18 tuổi đến hết 25 tuổi; công dân được đào tạo trình độ cao đẳng, đại học đã được tạm hoãn gọi nhập ngũ thì độ tuổi gọi nhập ngũ đến hết 27 tuổi.",
@@ -85,7 +85,7 @@
             ]
         },
         {
-            "id": "R_TUOI_4",
+            "id": "TUOI_4",
             "description": "Không đạt - quá tuổi",
             "citation": "Điều 30, Luật Nghĩa vụ quân sự số 78/2015/QH13",
             "quote": "Công dân đủ 18 tuổi được gọi nhập ngũ; độ tuổi gọi nhập ngũ từ đủ 18 tuổi đến hết 25 tuổi; công dân được đào tạo trình độ cao đẳng, đại học đã được tạm hoãn gọi nhập ngũ thì độ tuổi gọi nhập ngũ đến hết 27 tuổi.",
@@ -108,7 +108,7 @@
             ]
         },
         {
-            "id": "R_TUOI_5",
+            "id": "TUOI_5",
             "description": "Không đạt - quá tuổi 25, không hoãn học",
             "citation": "Điều 30, Luật Nghĩa vụ quân sự số 78/2015/QH13",
             "quote": "Công dân đủ 18 tuổi được gọi nhập ngũ; độ tuổi gọi nhập ngũ từ đủ 18 tuổi đến hết 25 tuổi; công dân được đào tạo trình độ cao đẳng, đại học đã được tạm hoãn gọi nhập ngũ thì độ tuổi gọi nhập ngũ đến hết 27 tuổi.",
@@ -141,7 +141,7 @@
             ]
         },
         {
-            "id": "R_SK_3",
+            "id": "SK_3",
             "description": "Không đạt - Ma túy",
             "citation": "Điểm a, Khoản 1, Điều 4, Thông tư số 105/2023/TT-BQP",
             "quote": "Không gọi nhập ngũ đối với công dân nghiện các chất ma túy, tiền chất ma túy được quy định tại Nghị định số 57/2022/NĐ-CP ngày 25 tháng 8 năm 2022 của Chính phủ quy định các danh mục chất ma túy và tiền chất.",
@@ -164,7 +164,7 @@
             ]
         },
         {
-            "id": "R_SK_4",
+            "id": "SK_4",
             "description": "Không đạt - Tật khúc xạ",
             "citation": "Điểm c, Khoản 3, Điều 4, Thông tư số 148/2018/TT-BQP (sửa đổi bởi Thông tư số 68/2025/TT-BQP)",
             "quote": "Không gọi nhập ngũ vào Quân đội những công dân mắc tật khúc xạ cận thị lớn hơn 1.5 diop trở lên, viễn thị các mức độ; chỉ số BMI nhỏ hơn 18.0 hoặc lớn hơn 29.9.",
@@ -193,7 +193,7 @@
             ]
         },
         {
-            "id": "R_SK_5",
+            "id": "SK_5",
             "description": "Không đạt - BMI",
             "citation": "Điểm c, Khoản 3, Điều 4, Thông tư số 148/2018/TT-BQP (sửa đổi bởi Thông tư số 68/2025/TT-BQP)",
             "quote": "Không gọi nhập ngũ vào Quân đội những công dân mắc tật khúc xạ cận thị lớn hơn 1.5 diop trở lên, viễn thị các mức độ; chỉ số BMI nhỏ hơn 18.0 hoặc lớn hơn 29.9.",
@@ -222,7 +222,7 @@
             ]
         },
         {
-            "id": "R_SK_6",
+            "id": "SK_6",
             "description": "Không đạt - HIV/AIDS",
             "citation": "Điểm c, Khoản 3, Điều 4, Thông tư số 148/2018/TT-BQP",
             "quote": "Không gọi nhập ngũ vào Quân đội những công dân có sức khỏe loại 3 tật khúc xạ về mắt (cận thị 1,5 diop trở lên, viễn thị các mức độ); nghiện ma túy, nhiễm HlV, AIDS.",
@@ -245,7 +245,7 @@
             ]
         },
         {
-            "id": "R_SK_1",
+            "id": "SK_1",
             "description": "Đạt chuẩn - Tất cả các tiêu chí sức khỏe",
             "citation": "Điểm a và c, Khoản 3, Điều 4, Thông tư số 148/2018/TT-BQP (sửa đổi bởi Thông tư số 68/2025/TT-BQP)",
             "quote": "Tuyển chọn những công dân có sức khỏe loại 1, 2, 3 theo quy định tại Thông tư liên tịch số 16/2016/TTLT-BYT-BQP. Không gọi nhập ngũ những công dân mắc tật khúc xạ cận thị lớn hơn 1.5 diop trở lên, viễn thị các mức độ; chỉ số BMI nhỏ hơn 18.0 hoặc lớn hơn 29.9; nghiện ma túy, nhiễm HIV, AIDS.",
@@ -269,7 +269,7 @@
             ]
         },
         {
-            "id": "R_VH_1",
+            "id": "VH_1",
             "description": "Đạt chuẩn thông thường (Lớp 8+)",
             "citation": "Điểm a, Khoản 4, Điều 4, Thông tư số 148/2018/TT-BQP",
             "quote": "Tuyển chọn và gọi nhập ngũ những công dân có trình độ văn hóa lớp 8 trở lên, lấy từ cao xuống thấp. Những địa phương có khó khăn không đảm bảo đủ chỉ tiêu giao quân thì báo cáo cấp có thẩm quyền xem xét, quyết định được tuyển chọn số công dân có trình độ văn hóa lớp 7.",
@@ -292,7 +292,7 @@
             ]
         },
         {
-            "id": "R_VH_2",
+            "id": "VH_2",
             "description": "Đạt chuẩn - Địa phương khó khăn (Lớp 7)",
             "citation": "Điểm a, Khoản 4, Điều 4, Thông tư số 148/2018/TT-BQP",
             "quote": "Tuyển chọn và gọi nhập ngũ những công dân có trình độ văn hóa lớp 8 trở lên, lấy từ cao xuống thấp. Những địa phương có khó khăn không đảm bảo đủ chỉ tiêu giao quân thì báo cáo cấp có thẩm quyền xem xét, quyết định được tuyển chọn số công dân có trình độ văn hóa lớp 7.",
@@ -320,7 +320,7 @@
             ]
         },
         {
-            "id": "R_VH_3",
+            "id": "VH_3",
             "description": "Đạt chuẩn - Vùng ĐBKK / Dân tộc thiểu số (Lớp 5+)",
             "citation": "Điểm b, Khoản 4, Điều 4, Thông tư số 148/2018/TT-BQP",
             "quote": "Các xã thuộc vùng sâu, vùng xa, vùng điều kiện kinh tế - xã hội đặc biệt khó khăn theo quy định của pháp luật; đồng bào dân tộc thiểu số dưới 10.000 người thì được tuyển không quá 25% công dân có trình độ văn hóa cấp tiểu học, còn lại là trung học cơ sở trở lên.",
@@ -356,7 +356,7 @@
             ]
         },
         {
-            "id": "R_VH_4",
+            "id": "VH_4",
             "description": "Không đạt (Dưới Lớp 5)",
             "citation": "Điểm a và b, Khoản 4, Điều 4, Thông tư số 148/2018/TT-BQP",
             "quote": "a) Tuyển chọn và gọi nhập ngũ những công dân có trình độ văn hóa lớp 8 trở lên, lấy từ cao xuống thấp. Những địa phương có khó khăn không đảm bảo đủ chỉ tiêu giao quân thì báo cáo cấp có thẩm quyền xem xét, quyết định được tuyển chọn số công dân có trình độ văn hóa lớp 7.\nb) Các xã thuộc vùng sâu, vùng xa, vùng điều kiện kinh tế - xã hội đặc biệt khó khăn theo quy định của pháp luật; đồng bào dân tộc thiểu số dưới 10.000 người thì được tuyển không quá 25% công dân có trình độ văn hóa cấp tiểu học, còn lại là trung học cơ sở trở lên.",
@@ -379,7 +379,7 @@
             ]
         },
         {
-            "id": "R_VH_5",
+            "id": "VH_5",
             "description": "Không đạt - Lớp 7, địa phương không khó khăn",
             "citation": "Điểm a và b, Khoản 4, Điều 4, Thông tư số 148/2018/TT-BQP",
             "quote": "a) Tuyển chọn và gọi nhập ngũ những công dân có trình độ văn hóa lớp 8 trở lên, lấy từ cao xuống thấp. Những địa phương có khó khăn không đảm bảo đủ chỉ tiêu giao quân thì báo cáo cấp có thẩm quyền xem xét, quyết định được tuyển chọn số công dân có trình độ văn hóa lớp 7.\nb) Các xã thuộc vùng sâu, vùng xa, vùng điều kiện kinh tế - xã hội đặc biệt khó khăn theo quy định của pháp luật; đồng bào dân tộc thiểu số dưới 10.000 người thì được tuyển không quá 25% công dân có trình độ văn hóa cấp tiểu học, còn lại là trung học cơ sở trở lên.",
@@ -417,7 +417,7 @@
             ]
         },
         {
-            "id": "R_VH_6",
+            "id": "VH_6",
             "description": "Không đạt - Lớp 5, 6, không thuộc diện đặc biệt",
             "citation": "Điểm b, Khoản 4, Điều 4, Thông tư số 148/2018/TT-BQP",
             "quote": "a) Tuyển chọn và gọi nhập ngũ những công dân có trình độ văn hóa lớp 8 trở lên, lấy từ cao xuống thấp. Những địa phương có khó khăn không đảm bảo đủ chỉ tiêu giao quân thì báo cáo cấp có thẩm quyền xem xét, quyết định được tuyển chọn số công dân có trình độ văn hóa lớp 7.\nb) Các xã thuộc vùng sâu, vùng xa, vùng điều kiện kinh tế - xã hội đặc biệt khó khăn theo quy định của pháp luật; đồng bào dân tộc thiểu số dưới 10.000 người thì được tuyển không quá 25% công dân có trình độ văn hóa cấp tiểu học, còn lại là trung học cơ sở trở lên.",
@@ -453,7 +453,7 @@
             ]
         },
         {
-            "id": "R_TAM_HOAN_1",
+            "id": "TAM_HOAN_1",
             "description": "Tạm hoãn - Sức khỏe",
             "citation": "Điểm a, Khoản 1, Điều 41, Luật nghĩa vụ quân sự 2015",
             "quote": "Chưa đủ sức khỏe phục vụ tại ngũ theo kết luận của Hội đồng khám sức khỏe.",
@@ -476,7 +476,7 @@
             ]
         },
         {
-            "id": "R_TAM_HOAN_2_a",
+            "id": "TAM_HOAN_2_a",
             "description": "Tạm hoãn - Gia cảnh 1a (Lao động duy nhất)",
             "citation": "Điểm b, Khoản 1, Điều 41, Luật nghĩa vụ quân sự 2015 (sửa đổi bởi Luật 98/2025/QH15)",
             "quote": "Lao động duy nhất phải trực tiếp nuôi dưỡng thân nhân không còn khả năng lao động hoặc chưa đến tuổi lao động...",
@@ -499,7 +499,7 @@
             ]
         },
         {
-            "id": "R_TAM_HOAN_2_b",
+            "id": "TAM_HOAN_2_b",
             "description": "Tạm hoãn - Gia cảnh 1b (Thiên tai, không còn lao động khác)",
             "citation": "Điểm b, Khoản 1, Điều 41, Luật nghĩa vụ quân sự 2015 (sửa đổi bởi Luật 98/2025/QH15)",
             "quote": "...trong gia đình bị thiệt hại nặng về người và tài sản do tai nạn, thiên tai, dịch bệnh nguy hiểm gây ra mà không còn người lao động nào khác được Ủy ban nhân dân cấp xã xác nhận.",
@@ -522,7 +522,7 @@
             ]
         },
         {
-            "id": "R_TAM_HOAN_3",
+            "id": "TAM_HOAN_3",
             "description": "Tạm hoãn - Gia cảnh 2 (Con bệnh binh 61-80%)",
             "citation": "Điểm c, Khoản 1, Điều 41, Luật nghĩa vụ quân sự 2015",
             "quote": "Một con của bệnh binh, người nhiễm chất độc da cam suy giảm khả năng lao động từ 61% đến 80%.",
@@ -545,7 +545,7 @@
             ]
         },
         {
-            "id": "R_TAM_HOAN_4",
+            "id": "TAM_HOAN_4",
             "description": "Tạm hoãn - Gia cảnh 3 (Anh/em tại ngũ)",
             "citation": "Điểm d, Khoản 1, Điều 41, Luật nghĩa vụ quân sự 2015",
             "quote": "Có anh, chị hoặc em ruột là hạ sĩ quan, binh sĩ đang phục vụ tại ngũ; hạ sĩ quan, chiến sĩ thực hiện nghĩa vụ tham gia Công an nhân dân.",
@@ -568,7 +568,7 @@
             ]
         },
         {
-            "id": "R_TAM_HOAN_5",
+            "id": "TAM_HOAN_5",
             "description": "Tạm hoãn - Công tác 1 (Di dân 3 năm đầu)",
             "citation": "Điểm đ, Khoản 1, Điều 41, Luật nghĩa vụ quân sự 2015",
             "quote": "Người thuộc diện di dân, giãn dân trong 03 năm đầu đến các xã đặc biệt khó khăn theo dự án phát triển kinh tế - xã hội của Nhà nước do Ủy ban nhân dân cấp tỉnh trở lên quyết định.",
@@ -591,7 +591,7 @@
             ]
         },
         {
-            "id": "R_TAM_HOAN_6",
+            "id": "TAM_HOAN_6",
             "description": "Tạm hoãn - Công tác 2 (Cán bộ vùng ĐBKK < 24 tháng)",
             "citation": "Điểm e, Khoản 1, Điều 41, Luật nghĩa vụ quân sự 2015",
             "quote": "Cán bộ, công chức, viên chức, thanh niên xung phong được điều động đến công tác, làm việc ở vùng có điều kiện kinh tế - xã hội đặc biệt khó khăn theo quy định của pháp luật.",
@@ -619,7 +619,7 @@
             ]
         },
         {
-            "id": "R_TAM_HOAN_7",
+            "id": "TAM_HOAN_7",
             "description": "Tạm hoãn - Học tập",
             "citation": "Điểm g, Khoản 1, Điều 41, Luật nghĩa vụ quân sự 2015",
             "quote": "Đang học tại cơ sở giáo dục phổ thông; đang được đào tạo trình độ đại học hệ chính quy thuộc cơ sở giáo dục đại học, trình độ cao đẳng hệ chính quy thuộc cơ sở giáo dục nghề nghiệp trong thời gian một khóa đào tạo của một trình độ đào tạo.",
@@ -648,7 +648,7 @@
             ]
         },
         {
-            "id": "R_MIEN_1_a",
+            "id": "MIEN_1_a",
             "description": "Miễn - Gia cảnh 1 a (Con LS)",
             "citation": "Điểm a, Khoản 2, Điều 41, Luật nghĩa vụ quân sự 2015",
             "quote": "Con của liệt sĩ, con của thương binh hạng một.",
@@ -671,7 +671,7 @@
             ]
         },
         {
-            "id": "R_MIEN_1_b",
+            "id": "MIEN_1_b",
             "description": "Miễn - Gia cảnh 1b (Con TB1)",
             "citation": "Điểm a, Khoản 2, Điều 41, Luật nghĩa vụ quân sự 2015",
             "quote": "Con của liệt sĩ, con của thương binh hạng một.",
@@ -694,7 +694,7 @@
             ]
         },
         {
-            "id": "R_MIEN_2",
+            "id": "MIEN_2",
             "description": "Miễn - Gia cảnh 2 (Anh/em LS)",
             "citation": "Điểm b, Khoản 2, Điều 41, Luật nghĩa vụ quân sự 2015",
             "quote": "Một anh hoặc một em trai của liệt sĩ.",
@@ -717,7 +717,7 @@
             ]
         },
         {
-            "id": "R_MIEN_3_a",
+            "id": "MIEN_3_a",
             "description": "Miễn - Gia cảnh 3a (Con TB2)",
             "citation": "Điểm c, Khoản 2, Điều 41, Luật nghĩa vụ quân sự 2015",
             "quote": "Một con của thương binh hạng hai.",
@@ -740,7 +740,7 @@
             ]
         },
         {
-            "id": "R_MIEN_3_b",
+            "id": "MIEN_3_b",
             "description": "Miễn - Gia cảnh 3b (Con BB 81%+)",
             "citation": "Điểm c, Khoản 2, Điều 41, Luật nghĩa vụ quân sự 2015",
             "quote": "Một con của bệnh binh suy giảm khả năng lao động từ 81% trở lên.",
@@ -763,7 +763,7 @@
             ]
         },
         {
-            "id": "R_MIEN_3_c",
+            "id": "MIEN_3_c",
             "description": "Miễn - Gia cảnh 3c (Con CĐDC 81%+)",
             "citation": "Điểm c, Khoản 2, Điều 41, Luật nghĩa vụ quân sự 2015",
             "quote": "Một con của người nhiễm chất độc da cam suy giảm khả năng lao động từ 81 % trở lên.",
@@ -786,7 +786,7 @@
             ]
         },
         {
-            "id": "R_MIEN_4",
+            "id": "MIEN_4",
             "description": "Miễn - Công tác 1 (Cơ yếu)",
             "citation": "Điểm d, Khoản 2, Điều 41, Luật nghĩa vụ quân sự 2015",
             "quote": "Người làm công tác cơ yếu không phải là quân nhân, Công an nhân dân.",
@@ -809,7 +809,7 @@
             ]
         },
         {
-            "id": "R_MIEN_5",
+            "id": "MIEN_5",
             "description": "Miễn - Công tác 2 (Cán bộ vùng ĐBKK 24+ tháng)",
             "citation": "Điểm đ, Khoản 2, Điều 41, Luật nghĩa vụ quân sự 2015",
             "quote": "Cán bộ, công chức, viên chức, thanh niên xung phong được điều động đến công tác, làm việc ở vùng có điều kiện kinh tế - xã hội đặc biệt khó khăn theo quy định của pháp luật từ 24 tháng trở lên.",
@@ -832,7 +832,7 @@
             ]
         },
         {
-            "id": "R_FINAL_TINH_NGUYEN",
+            "id": "FINAL_TINH_NGUYEN",
             "priority": 100,
             "description": "Ưu tiên 1: Tình nguyện",
             "citation": "Khoản 3, Điều 41, Luật nghĩa vụ quân sự 2015",
@@ -860,7 +860,7 @@
             ]
         },
         {
-            "id": "R_FINAL_CHECK_MIEN",
+            "id": "FINAL_CHECK_MIEN",
             "priority": -50,
             "description": "Thu thập lý do: Miễn",
             "citation": "Khoản 2, Điều 41, Luật nghĩa vụ quân sự 2015",
@@ -887,7 +887,7 @@
             ]
         },
         {
-            "id": "R_FINAL_CHECK_HOAN",
+            "id": "FINAL_CHECK_HOAN",
             "priority": -50,
             "description": "Thu thập lý do: Tạm hoãn",
             "citation": "Khoản 1, Điều 41, Luật nghĩa vụ quân sự 2015",
@@ -914,7 +914,7 @@
             ]
         },
         {
-            "id": "R_FINAL_CHECK_TUOI",
+            "id": "FINAL_CHECK_TUOI",
             "priority": -50,
             "description": "Thu thập lý do: Không đạt Tuổi",
             "citation": "Điều 30, Luật NVQS 2015",
@@ -941,7 +941,7 @@
             ]
         },
         {
-            "id": "R_FINAL_CHECK_SK",
+            "id": "FINAL_CHECK_SK",
             "priority": -50,
             "description": "Thu thập lý do: Không đạt Sức khỏe",
             "citation": "Điều 4, Thông tư 148/2018/TT-BQP",
@@ -968,7 +968,7 @@
             ]
         },
         {
-            "id": "R_FINAL_CHECK_VH",
+            "id": "FINAL_CHECK_VH",
             "priority": -50,
             "description": "Thu thập lý do: Không đạt Văn hóa",
             "citation": "Điều 4, Thông tư 148/2018/TT-BQP",
@@ -995,7 +995,7 @@
             ]
         },
         {
-            "id": "R_FINAL_COMPILE_KET_LUAN",
+            "id": "FINAL_COMPILE_KET_LUAN",
             "priority": -100,
             "description": "Tổng hợp kết luận cuối cùng",
             "citation": "Điều 31, Luật Nghĩa vụ quân sự 2015",
