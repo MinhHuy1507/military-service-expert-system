@@ -18,7 +18,7 @@ Lựa chọn mô hình biểu diễn tri thức: **Mô hình Tri thức nhiều 
 * **Hệ luật dẫn (Rule-Based System):** Biểu diễn 40 quy tắc logic, điều kiện, và các trường hợp Tạm hoãn/Miễn.
 * **Frame (Khái niệm):** Được đơn giản hóa để định nghĩa các "Sự kiện" (Facts) hay "Khái niệm" (Concepts) mà các luật sẽ sử dụng (ví dụ: `tuoi`, `loai_suc_khoe`, `la_con_cua_liet_si`...).
 
-Cụ thể: lựa chọn mô hình tri thức nhiều thành phần với 3 thành phần chính: **(C, Ops, Rules)**.
+Cụ thể: lựa chọn mô hình tri thức nhiều thành phần với 3 thành phần chính: **(C, Rules)**.
 
 ### Bước 2: Phân tích Tri thức
 
@@ -60,20 +60,6 @@ Bao gồm 29 sự kiện (facts) đầu vào mà hệ thống (Frontend) sẽ th
     * `thoi_gian_cong_tac_vung_dbkk_thang` (Sự kiện này được dùng để kích hoạt `R_TAM_HOAN_6` hoặc `R_MIEN_5` tùy vào giá trị).
 * **Tình nguyện (1 sự kiện):**
     * `tinh_nguyen_nhap_ngu`
-
-#### Thành phần Ops (Toán tử)
-
-* **Các toán tử so sánh:**
-    * `==` (Bằng)
-    * `!=` (Không bằng)
-    * `>=` (Lớn hơn hoặc bằng)
-    * `>` (Lớn hơn)
-    * `<` (Nhỏ hơn)
-    * `<=` (Nhỏ hơn hoặc bằng)
-    * `IN` (Nằm trong một danh sách)
-* **Các toán tử logic:**
-    * `AND`
-    * `OR`
 
 #### Thành phần Rules (Luật)
 Định nghĩa 40 luật, chia thành hai cấp độ:

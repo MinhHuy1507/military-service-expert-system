@@ -8,29 +8,6 @@
     * **Đầu ra (Kết luận `KL`):** Là một kết luận tổng hợp (`KET_LUAN`) và một giải thích chi tiết (`GIAI_THICH`), theo sau là phần giải thích đầy đủ trên từng tiêu chí (tuổi, sức khỏe, văn hóa, trường hợp tạm hoãn/ miễn), kèm theo là trích luật.
     * **Bộ kiểm thử:** Sử dụng 15 kịch bản trong file `Cau_Truy_Van.docx` làm bộ dữ liệu chuẩn để đánh giá và gỡ lỗi hệ thống.
 
-Ví dụ (Tình huống 15):
-- Input: 20 tuổi, cận 9.0 diop, trình độ học vấn 12/12, đang học đại học.
-- Output: 
-    * Kết luận: KHÔNG ĐỦ ĐIỀU KIỆN GỌI NHẬP NGŨ.
-    * Giải thích: Thuộc trường hợp tạm hoãn, Không đạt tiêu chuẩn về sức khỏe.
-    * Chi tiết:
-        * Tiêu chuẩn về Độ tuổi:
-            * Căn cứ pháp lý: Điều 30, Luật Nghĩa vụ quân sự số 78/2015/QH13:\
-            "Công dân đủ 18 tuổi được gọi nhập ngũ; độ tuổi gọi nhập ngũ từ đủ 18 tuổi đến hết 25 tuổi; công dân được đào tạo trình độ cao đẳng, đại học đã được tạm hoãn gọi nhập ngũ thì độ tuổi gọi nhập ngũ đến hết 27 tuổi.” 
-            * Kết luận tiêu chuẩn: Đạt tiêu chuẩn về tuổi. Nằm trong độ tuổi gọi nhập ngũ (từ đủ 18 đến hết 25 tuổi).
-        * Tiêu chuẩn về Sức khỏe: 
-            * Căn cứ pháp lý: Điểm c, Khoản 3, Điều 4, Thông tư số 148/2018/TT-BQP (sửa đổi bởi Thông tư số 68/2025/TT-BQP):\
-            "Không gọi nhập ngũ vào Quân đội những công dân mắc tật khúc xạ cận thị lớn hơn 1.5 diop trở lên, viễn thị các mức độ; chỉ số BMI nhỏ hơn 18.0 hoặc lớn hơn 29.9"
-            * Kết luận tiêu chuẩn: Không đạt tiêu chuẩn về sức khỏe. Mắc tật khúc xạ (Cận thị > 1.5 diop hoặc Viễn thị) 
-        * Tiêu chuẩn về Văn hóa:
-            * Căn cứ pháp lý: Điểm a, Khoản 4, Điều 4, Thông tư số 148/2018/TT-BQP:\
-            "Tuyển chọn và gọi nhập ngũ những công dân có trình độ văn hóa lớp 8 trở lên, lấy từ cao xuống thấp. Những địa phương có khó khăn không đảm bảo đủ chỉ tiêu giao quân thì báo cáo cấp có thẩm quyền xem xét, quyết định được tuyển chọn số công dân có trình độ văn hóa lớp 7."
-            * Kết luận tiêu chuẩn: Đạt tiêu chuẩn về văn hóa. Trình độ văn hóa được tuyển từ lớp 8 trở lên .
-        * Trường hợp tạm hoãn:
-            * Căn cứ pháp lý: Điểm g, Khoản 1, Điều 41, Luật nghĩa vụ quân sự 2015:\
-            "Đang học tại cơ sở giáo dục phổ thông; đang được đào tạo trình độ đại học hệ chính quy thuộc cơ sở giáo dục đại học, trình độ cao đẳng hệ chính quy thuộc cơ sở giáo dục nghề nghiệp trong thời gian một khóa đào tạo của một trình độ đào tạo.”
-            * Kết luận tiêu chuẩn: Thuộc diện tạm hoãn. Đang học tại cơ sở giáo dục.
-
 ## Bước 2: Phân loại bài toán
 
 * **Mục tiêu:** Định hướng lựa chọn phương pháp biểu diễn và suy diễn phù hợp.
