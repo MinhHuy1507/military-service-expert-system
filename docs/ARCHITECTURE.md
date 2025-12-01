@@ -16,114 +16,112 @@ Hệ Chuyên Gia Hỗ Trợ Tuyển Chọn và Tư Vấn Nghĩa Vụ Quân Sự 
 │                            USER LAYER                                 │
 │                        (Presentation Tier)                            │
 │                                                                       │
-│  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓  │
-│  ┃           Streamlit Frontend (Port 8501)                     ┃  │
-│  ┃                                                               ┃  │
-│  ┃  ┌──────────────┐  ┌──────────────┐  ┌───────────────────┐  ┃  │
-│  ┃  │   Tab 1:     │  │   Tab 2:     │  │    Tab 3-5:       │  ┃  │
-│  ┃  │  Thông tin   │  │  Tiêu chuẩn  │  │  Hoàn cảnh        │  ┃  │
-│  ┃  │  cơ bản      │  │  Sức khỏe    │  │  đặc biệt         │  ┃  │
-│  ┃  └──────────────┘  └──────────────┘  └───────────────────┘  ┃  │
-│  ┃                                                               ┃  │
-│  ┃  • Input Forms & Validation                                  ┃  │
-│  ┃  • Result Display & Formatting                               ┃  │
-│  ┃  • Legal Citation Rendering                                  ┃  │
-│  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━┯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  │
-└────────────────────────────────┼───────────────────────────────────────┘
+│  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓      │
+│  ┃           Streamlit Frontend (Port 8501)                    ┃      │
+│  ┃                                                             ┃      │
+│  ┃  ┌──────────────┐  ┌──────────────┐  ┌───────────────────┐  ┃      │
+│  ┃  │   Tab 1:     │  │   Tab 2:     │  │    Tab 3-5:       │  ┃      │
+│  ┃  │  Thông tin   │  │  Tiêu chuẩn  │  │  Hoàn cảnh        │  ┃      │
+│  ┃  │  cơ bản      │  │  Sức khỏe    │  │  đặc biệt         │  ┃      │
+│  ┃  └──────────────┘  └──────────────┘  └───────────────────┘  ┃      │
+│  ┃                                                             ┃      │
+│  ┃  • Biểu mẫu nhập liệu & Xác thực                            ┃      │
+│  ┃  • Hiển thị & Định dạng kết quả                             ┃      │
+│  ┃  • Trình bày trích dẫn pháp luật                            ┃      │
+│  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━┯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛      │
+└────────────────────────────────┼──────────────────────────────────────┘
                                  │
                                  │ HTTP/REST API (JSON)
                                  │ Request: POST /consult
                                  │ Response: {ket_luan, giai_thich, trace}
                                  │
-┌────────────────────────────────▼───────────────────────────────────────┐
-│                          BUSINESS LAYER                                │
-│                         (Application Tier)                             │
-│                                                                        │
-│  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓  │
-│  ┃             FastAPI Backend (Port 8000)                      ┃  │
-│  ┃                                                               ┃  │
-│  ┃  ┌─────────────────────────────────────────────────────┐    ┃  │
-│  ┃  │            API Endpoints                            │    ┃  │
-│  ┃  │  • GET  /         → Health check                    │    ┃  │
-│  ┃  │  • POST /consult  → Main consultation endpoint      │    ┃  │
-│  ┃  │  • GET  /docs     → Swagger UI                      │    ┃  │
-│  ┃  └───────────────────────┬─────────────────────────────┘    ┃  │
-│  ┃                          │                                   ┃  │
-│  ┃  ┌───────────────────────▼─────────────────────────────┐    ┃  │
-│  ┃  │       Pydantic Models (Data Validation)             │    ┃  │
-│  ┃  │  • CitizenFacts: 29 input fields                    │    ┃  │
-│  ┃  │  • Type checking & constraints                      │    ┃  │
-│  ┃  └───────────────────────┬─────────────────────────────┘    ┃  │
-│  ┃                          │                                   ┃  │
-│  ┃  ┌───────────────────────▼─────────────────────────────┐    ┃  │
-│  ┃  │      Inference Engine (bo_suy_dien_v4.py)           │    ┃  │
-│  ┃  │                                                      │    ┃  │
-│  ┃  │  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓  │    ┃  │
-│  ┃  │  ┃   Forward Chaining Algorithm                ┃  │    ┃  │
-│  ┃  │  ┃                                             ┃  │    ┃  │
-│  ┃  │  ┃  1. Load Rules (sorted by priority)        ┃  │    ┃  │
-│  ┃  │  ┃     └─ Priority: 100 → 0 → -5 → -50 → -100 ┃  │    ┃  │
-│  ┃  │  ┃                                             ┃  │    ┃  │
-│  ┃  │  ┃  2. Initialize Working Memory               ┃  │    ┃  │
-│  ┃  │  ┃     └─ known_facts = initial_facts + def's ┃  │    ┃  │
-│  ┃  │  ┃                                             ┃  │    ┃  │
-│  ┃  │  ┃  3. Matching Phase                          ┃  │    ┃  │
-│  ┃  │  ┃     └─ _evaluate_rule(conditions, ops)     ┃  │    ┃  │
-│  ┃  │  ┃     └─ _check_condition(fact, op, val)     ┃  │    ┃  │
-│  ┃  │  ┃                                             ┃  │    ┃  │
-│  ┃  │  ┃  4. Execution Phase                         ┃  │    ┃  │
-│  ┃  │  ┃     └─ Execute actions (set/add_to_list)   ┃  │    ┃  │
-│  ┃  │  ┃     └─ Update working memory               ┃  │    ┃  │
-│  ┃  │  ┃                                             ┃  │    ┃  │
-│  ┃  │  ┃  5. Trace Recording                         ┃  │    ┃  │
-│  ┃  │  ┃     └─ Store fired rules in solution_trace ┃  │    ┃  │
-│  ┃  │  ┃                                             ┃  │    ┃  │
-│  ┃  │  ┃  6. Conclusion Compilation                  ┃  │    ┃  │
-│  ┃  │  ┃     └─ _compile_final_result()             ┃  │    ┃  │
-│  ┃  │  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  │    ┃  │
-│  ┃  └─────────────────────────────────────────────────────┘    ┃  │
-│  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━┯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  │
-└────────────────────────────────┼───────────────────────────────────────┘
+┌────────────────────────────────▼──────────────────────────────────────┐
+│                          BUSINESS LAYER                               │
+│                         (Application Tier)                            │
+│                                                                       │
+│  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓      │
+│  ┃             FastAPI Backend (Port 8000)                     ┃      │
+│  ┃                                                             ┃      │
+│  ┃  ┌────────────────────────────────────────────────────┐     ┃      │
+│  ┃  │            API Endpoints                           │     ┃      │
+│  ┃  │  • GET  /         → Health check                   │     ┃      │
+│  ┃  │  • POST /consult  → Main consultation endpoint     │     ┃      │
+│  ┃  │  • GET  /docs     → Swagger UI                     │     ┃      │
+│  ┃  └──────────────────────┬─────────────────────────────┘     ┃      │
+│  ┃                         │                                   ┃      │
+│  ┃  ┌──────────────────────▼─────────────────────────────┐     ┃      │
+│  ┃  │       Pydantic Models (Data Validation)            │     ┃      │
+│  ┃  │  • CitizenFacts: 29 input fields                   │     ┃      │
+│  ┃  │  • Type checking & constraints                     │     ┃      │
+│  ┃  └──────────────────────┬─────────────────────────────┘     ┃      │
+│  ┃                         │                                   ┃      │
+│  ┃  ┌──────────────────────▼─────────────────────────────┐     ┃      │
+│  ┃  │      Inference Engine (inference_engine.py)        │     ┃      │
+│  ┃  │                                                    │     ┃      │
+│  ┃  │  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓     │     ┃      │
+│  ┃  │  ┃   Forward Chaining Algorithm              ┃     │     ┃      │
+│  ┃  │  ┃                                           ┃     │     ┃      │
+│  ┃  │  ┃  1. Load Rules (sorted by priority)       ┃     │     ┃      │
+│  ┃  │  ┃     └─ Priority: 100→0→-5→-50→-100        ┃     │     ┃      │
+│  ┃  │  ┃                                           ┃     │     ┃      │
+│  ┃  │  ┃  2. Initialize Working Memory             ┃     │     ┃      │
+│  ┃  │  ┃     └─ known_facts = initial_facts + def's┃     │     ┃      │
+│  ┃  │  ┃                                           ┃     │     ┃      │
+│  ┃  │  ┃  3. Matching Phase                        ┃     │     ┃      │
+│  ┃  │  ┃     └─ _evaluate_rule(conditions, ops)    ┃     │     ┃      │
+│  ┃  │  ┃     └─ _check_condition(fact, op, val)    ┃     │     ┃      │
+│  ┃  │  ┃                                           ┃     │     ┃      │
+│  ┃  │  ┃  4. Execution Phase                       ┃     │     ┃      │
+│  ┃  │  ┃     └─ Execute actions (set/add_to_list)  ┃     │     ┃      │
+│  ┃  │  ┃     └─ Update working memory              ┃     │     ┃      │
+│  ┃  │  ┃                                           ┃     │     ┃      │
+│  ┃  │  ┃  5. Trace Recording                       ┃     │     ┃      │
+│  ┃  │  ┃     └─ Store fired rules in solution_trace┃     │     ┃      │
+│  ┃  │  ┃                                           ┃     │     ┃      │
+│  ┃  │  ┃  6. Conclusion Compilation                ┃     │     ┃      │
+│  ┃  │  ┃     └─ _compile_final_result()            ┃     │     ┃      │
+│  ┃  │  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛     │     ┃      │
+│  ┃  └────────────────────────────────────────────────────┘     ┃      │
+│  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━┯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛      │
+└────────────────────────────────┼──────────────────────────────────────┘                                                 │ File I/O (JSON Load)
                                  │
-                                 │ File I/O (JSON Load)
-                                 │
-┌────────────────────────────────▼───────────────────────────────────────┐
-│                           DATA LAYER                                   │
-│                          (Data Tier)                                   │
-│                                                                        │
-│  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓  │
-│  ┃            CSTT_v5.json (Knowledge Base)                     ┃  │
-│  ┃                                                               ┃  │
-│  ┃  {                                                            ┃  │
-│  ┃    "rules": [                                                 ┃  │
-│  ┃      {                                                        ┃  │
-│  ┃        "id": "TUOI_1",                                        ┃  │
-│  ┃        "description": "Đạt chuẩn 18-25 tuổi",                ┃  │
-│  ┃        "priority": 0,                                         ┃  │
-│  ┃        "citation": "Điều 30, Luật NVQS 2015",                ┃  │
-│  ┃        "quote": "Công dân đủ 18 tuổi...",                    ┃  │
-│  ┃        "conditions": [                                        ┃  │
-│  ┃          {"fact": "tuoi", "operator": ">=", "value": 18},    ┃  │
-│  ┃          {"fact": "tuoi", "operator": "<=", "value": 25}     ┃  │
-│  ┃        ],                                                     ┃  │
-│  ┃        "actions": [                                           ┃  │
-│  ┃          {"fact": "TIEU_CHUAN_TUOI", "value": "Đạt"},        ┃  │
-│  ┃          {"fact": "LY_DO_TUOI_DETAIL", "value": "..."}       ┃  │
-│  ┃        ]                                                      ┃  │
-│  ┃      },                                                       ┃  │
-│  ┃      ... (38 more rules)                                     ┃  │
-│  ┃    ]                                                          ┃  │
-│  ┃  }                                                            ┃  │
-│  ┃                                                               ┃  │
-│  ┃  ┌─────────────────────────────────────────────────┐         ┃  │
-│  ┃  │ • Total: 39 Rules                               │         ┃  │
-│  ┃  │ • Volunteer Rule: 1 (Priority: 100)             │         ┃  │
-│  ┃  │ • Intermediate Rules: 32 (Priority: 0, -5)      │         ┃  │
-│  ┃  │ • Collection Rules: 5 (Priority: -50)           │         ┃  │
-│  ┃  │ • Final Compilation: 1 (Priority: -100)         │         ┃  │
-│  ┃  └─────────────────────────────────────────────────┘         ┃  │
-│  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  │
-└───────────────────────────────────────────────────────────────────────┘
+┌────────────────────────────────▼──────────────────────────────────────┐
+│                           DATA LAYER                                  │
+│                          (Data Tier)                                  │
+│                                                                       │
+│  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓      │
+│  ┃            CSTT_v5.json (Knowledge Base)                    ┃      │
+│  ┃                                                             ┃      │
+│  ┃  {                                                          ┃      │
+│  ┃    "rules": [                                               ┃      │
+│  ┃      {                                                      ┃      │
+│  ┃        "id": "TUOI_1",                                      ┃      │
+│  ┃        "description": "Đạt chuẩn 18-25 tuổi",               ┃      │
+│  ┃        "priority": 0,                                       ┃      │
+│  ┃        "citation": "Điều 30, Luật NVQS 2015",               ┃      │
+│  ┃        "quote": "Công dân đủ 18 tuổi...",                   ┃      │
+│  ┃        "conditions": [                                      ┃      │
+│  ┃          {"fact": "tuoi", "operator": ">=", "value": 18},   ┃      │
+│  ┃          {"fact": "tuoi", "operator": "<=", "value": 25}    ┃      │
+│  ┃        ],                                                   ┃      │
+│  ┃        "actions": [                                         ┃      │
+│  ┃          {"fact": "TIEU_CHUAN_TUOI", "value": "Đạt"},       ┃      │
+│  ┃          {"fact": "LY_DO_TUOI_DETAIL", "value": "..."}      ┃      │
+│  ┃        ]                                                    ┃      │
+│  ┃      },                                                     ┃      │
+│  ┃      ... (38 more rules)                                    ┃      │
+│  ┃    ]                                                        ┃      │
+│  ┃  }                                                          ┃      │
+│  ┃                                                             ┃      │
+│  ┃  ┌───────────────────────────────────────────────┐          ┃      │
+│  ┃  │ • Total: 39 Rules                             │          ┃      │
+│  ┃  │ • Volunteer Rule: 1 (Priority: 100)           │          ┃      │
+│  ┃  │ • Intermediate Rules: 32 (Priority: 0, -5)    │          ┃      │
+│  ┃  │ • Collection Rules: 5 (Priority: -50)         │          ┃      │
+│  ┃  │ • Final Compilation: 1 (Priority: -100)       │          ┃      │
+│  ┃  └───────────────────────────────────────────────┘          ┃      │
+│  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━┯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛      │
+└────────────────────────────────┼──────────────────────────────────────┘
 ```
 
 ---
