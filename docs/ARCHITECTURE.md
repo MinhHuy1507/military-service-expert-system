@@ -456,14 +456,14 @@ Rules được sắp xếp theo mức độ ưu tiên:
 ### Kịch bản: Tư vấn cho công dân 20 tuổi, đang học ĐH
 
 ```
-```
+
 ┌────────────────────────────────────────────────────────────────┐
 │ 1. USER INPUT (Streamlit Frontend)                             │
 ├────────────────────────────────────────────────────────────────┤
 │   Tab 1: tuoi = 20                                             │
-│   Tab 1: trinh_do_van_hoa = 12/12                              │
-│   Tab 2: chi_so_BMI = 22.0                                     │
-│   Tab 3: dang_hoc_dh_cd_chinh_quy = True                       │
+│   Tab 2: trinh_do_van_hoa = 12/12                              │
+│   Tab 3: chi_so_BMI = 22.0                                     │
+│   Tab 4: dang_hoc_dh_cd_chinh_quy = True                       │
 │   ... (25 other fields = default/False)                        │
 └──────────────────────────┬─────────────────────────────────────┘
                      │
@@ -484,16 +484,16 @@ Rules được sắp xếp theo mức độ ưu tiên:
 │ 3. INFERENCE ENGINE (Forward Chaining)                         │
 ├────────────────────────────────────────────────────────────────┤
 │   Iteration 1: Priority 100                                    │
-│   ├─ AGE_1 fires → TIEU_CHUAN_TUOI = "Đạt"                     │
-│   └─ EDU_1 fires → TIEU_CHUAN_VAN_HOA = "Đạt"                  │
+│   ├─ TUOI_1 fires → TIEU_CHUAN_TUOI = "Đạt"                     │
+│   └─ VH_1 fires → TIEU_CHUAN_VAN_HOA = "Đạt"                  │
 │                                                                │
 │   Iteration 2: Priority 0                                      │
-│   ├─ HEALTH_1 fires → (No health issues detected)              │
-│   ├─ DEFER_8 fires → DIEN_HOAN = True                          │
+│   ├─ SK_1 fires → (No health issues detected)              │
+│   ├─ TAM_HOAN_8 fires → DIEN_HOAN = True                          │
 │   └─         └─ LY_DO_HOAN_DETAIL = "Đang học ĐH..."           │
 │                                                                │
 │   Iteration 3: Priority -50                                    │
-│   └─ FINAL_CHECK_DEFER fires                                   │
+│   └─ FINAL_* fires                                   │
 │       └─ Add to LY_DO_TONG_HOP: "Thuộc trường hợp..."          │
 │                                                                │
 │   Iteration 4: Priority -100                                   │
@@ -533,7 +533,7 @@ Rules được sắp xếp theo mức độ ưu tiên:
 │   st.expander("Chi tiết suy diễn"):                            │
 │     └─ Display citations & quotes                              │
 └────────────────────────────────────────────────────────────────┘
-```
+
 ```
 
 ---

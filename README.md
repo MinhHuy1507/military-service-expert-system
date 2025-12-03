@@ -141,6 +141,10 @@ Hệ thống được thiết kế theo mô hình **Client-Server** với kiến
 ```
 
 ### Luồng xử lý dữ liệu
+#### Overview
+![Luồng dữ liệu](./assets/processing_thread_overview.png)
+#### Detail
+![Luồng dữ liệu](./assets/processing_thread_detailed.png)
 
 1. **Thu thập thông tin:** Người dùng nhập liệu qua giao diện Streamlit (5 tabs)
 2. **Gửi yêu cầu:** Frontend gọi API `/consult` với dữ liệu JSON
