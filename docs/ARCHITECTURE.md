@@ -331,6 +331,7 @@ inference_engine_v4.py
 
 #### Thuật toán Forward Chaining
 [pseudocode_inference_engine.txt](./pseudocode_inference_engine.txt)
+![Forward Chaining](../assets/forward_chaining.png)
 ```
 ALGORITHM: Forward Chaining Inference
 
@@ -448,86 +449,91 @@ Rules được sắp xếp theo mức độ ưu tiên:
 ---
 
 ## Luồng dữ liệu End-to-End
+![Luồng dữ liệu](../assets/processing_thread_overview.png)
+![Luồng dữ liệu](../assets/processing_thread_detailed.png)
+
 
 ### Kịch bản: Tư vấn cho công dân 20 tuổi, đang học ĐH
 
 ```
-┌──────────────────────────────────────────────────────────────┐
-│ 1. USER INPUT (Streamlit Frontend)                          │
-├──────────────────────────────────────────────────────────────┤
-│   Tab 1: tuoi = 20                                          │
-│   Tab 1: trinh_do_van_hoa = 12/12                          │
-│   Tab 2: chi_so_BMI = 22.0                                  │
-│   Tab 3: dang_hoc_dh_cd_chinh_quy = True                    │
-│   ... (25 other fields = default/False)                     │
-└──────────────────────────┬───────────────────────────────────┘
-                           │
-                           │ HTTP POST /consult
-                           │ Content-Type: application/json
-                           │
-┌──────────────────────────▼───────────────────────────────────┐
-│ 2. BACKEND API (FastAPI)                                    │
-├──────────────────────────────────────────────────────────────┤
-│   Receive JSON payload                                      │
-│   Validate with CitizenFacts model                          │
-│   initial_facts = facts.dict()                              │
-└──────────────────────────┬───────────────────────────────────┘
-                           │
-                           │ engine.evaluate(initial_facts)
-                           │
-┌──────────────────────────▼───────────────────────────────────┐
-│ 3. INFERENCE ENGINE (Forward Chaining)                      │
-├──────────────────────────────────────────────────────────────┤
-│   Iteration 1: Priority 100                                 │
-│   ├─ AGE_1 fires → TIEU_CHUAN_TUOI = "Đạt"               │
-│   └─ EDU_1 fires → TIEU_CHUAN_VAN_HOA = "Đạt"            │
-│                                                             │
-│   Iteration 2: Priority 0                                  │
-│   ├─ HEALTH_1 fires → (No health issues detected)        │
-│   ├─ DEFE8 fires → DIEN_HOAN = True                    │
-│   └─         └─ LY_DO_HOAN_DETAIL = "Đang học ĐH..."       │
-│                                                             │
-│   Iteration 3: Priority -50                                │
-│   └─ FINAL_CHECK_DEFER fires                               │
-│       └─ Add to LY_DO_TONG_HOP: "Thuộc trường hợp..."      │
-│                                                             │
-│   Iteration 4: Priority -100                               │
-│   └─ FINAL_COMPILE fires                                   │
-│       ├─ KET_LUAN = "TẠM HOÃN nghĩa vụ quân sự"            │
-│       └─ GIAI_THICH = "Bạn thuộc diện tạm hoãn..."         │
-└──────────────────────────┬───────────────────────────────────┘
-                           │
-                           │ Return (ket_luan, giai_thich, trace)
-                           │
-┌──────────────────────────▼───────────────────────────────────┐
-│ 4. BACKEND API (Response Formatting)                        │
-├──────────────────────────────────────────────────────────────┤
-│   Filter trace (remove FINAL_* rules)                       │
-│   Build JSON response:                                      │
-│   {                                                          │
-│     "ket_luan": "TẠM HOÃN nghĩa vụ quân sự",                │
-│     "giai_thich": "Bạn thuộc diện tạm hoãn...",             │
-│     "trace": [                                              │
-│       {                                                      │
-│         "id": "DEFE8",                                  │
-│         "description": "...",                               │
-│         "citation": "Điểm g, Khoản 1, Điều 41, Luật NVQS",  │
-│         "quote": "Công dân được tạm hoãn..."                │
-│       }                                                      │
-│     ]                                                        │
-│   }                                                          │
-└──────────────────────────┬───────────────────────────────────┘
-                           │
-                           │ HTTP 200 OK (JSON)
-                           │
-┌──────────────────────────▼───────────────────────────────────┐
-│ 5. FRONTEND (Result Display)                                │
-├──────────────────────────────────────────────────────────────┤
-│   st.info("⏸️ TẠM HOÃN nghĩa vụ quân sự")                   │
-│   st.write(giai_thich)                                      │
-│   st.expander("Chi tiết suy diễn"):                         │
-│     └─ Display citations & quotes                           │
-└──────────────────────────────────────────────────────────────┘
+```
+┌────────────────────────────────────────────────────────────────┐
+│ 1. USER INPUT (Streamlit Frontend)                             │
+├────────────────────────────────────────────────────────────────┤
+│   Tab 1: tuoi = 20                                             │
+│   Tab 1: trinh_do_van_hoa = 12/12                              │
+│   Tab 2: chi_so_BMI = 22.0                                     │
+│   Tab 3: dang_hoc_dh_cd_chinh_quy = True                       │
+│   ... (25 other fields = default/False)                        │
+└──────────────────────────┬─────────────────────────────────────┘
+                     │
+                     │ HTTP POST /consult
+                     │ Content-Type: application/json
+                     │
+┌──────────────────────────▼─────────────────────────────────────┐
+│ 2. BACKEND API (FastAPI)                                       │
+├────────────────────────────────────────────────────────────────┤
+│   Receive JSON payload                                         │
+│   Validate with CitizenFacts model                             │
+│   initial_facts = facts.dict()                                 │
+└──────────────────────────┬─────────────────────────────────────┘
+                     │
+                     │ engine.evaluate(initial_facts)
+                     │
+┌──────────────────────────▼─────────────────────────────────────┐
+│ 3. INFERENCE ENGINE (Forward Chaining)                         │
+├────────────────────────────────────────────────────────────────┤
+│   Iteration 1: Priority 100                                    │
+│   ├─ AGE_1 fires → TIEU_CHUAN_TUOI = "Đạt"                     │
+│   └─ EDU_1 fires → TIEU_CHUAN_VAN_HOA = "Đạt"                  │
+│                                                                │
+│   Iteration 2: Priority 0                                      │
+│   ├─ HEALTH_1 fires → (No health issues detected)              │
+│   ├─ DEFER_8 fires → DIEN_HOAN = True                          │
+│   └─         └─ LY_DO_HOAN_DETAIL = "Đang học ĐH..."           │
+│                                                                │
+│   Iteration 3: Priority -50                                    │
+│   └─ FINAL_CHECK_DEFER fires                                   │
+│       └─ Add to LY_DO_TONG_HOP: "Thuộc trường hợp..."          │
+│                                                                │
+│   Iteration 4: Priority -100                                   │
+│   └─ FINAL_COMPILE fires                                       │
+│       ├─ KET_LUAN = "TẠM HOÃN nghĩa vụ quân sự"                │
+│       └─ GIAI_THICH = "Bạn thuộc diện tạm hoãn..."             │
+└──────────────────────────┬─────────────────────────────────────┘
+                     │
+                     │ Return (ket_luan, giai_thich, trace)
+                     │
+┌──────────────────────────▼─────────────────────────────────────┐
+│ 4. BACKEND API (Response Formatting)                           │
+├────────────────────────────────────────────────────────────────┤
+│   Filter trace (remove FINAL_* rules)                          │
+│   Build JSON response:                                         │
+│   {                                                            │
+│     "ket_luan": "TẠM HOÃN nghĩa vụ quân sự",                   │
+│     "giai_thich": "Bạn thuộc diện tạm hoãn...",                │
+│     "trace": [                                                 │
+│       {                                                        │
+│         "id": "DEFER_8",                                       │
+│         "description": "...",                                  │
+│         "citation": "Điểm g, Khoản 1, Điều 41, Luật NVQS",     │
+│         "quote": "Công dân được tạm hoãn..."                   │
+│       }                                                        │
+│     ]                                                          │
+│   }                                                            │
+└──────────────────────────┬─────────────────────────────────────┘
+                     │
+                     │ HTTP 200 OK (JSON)
+                     │
+┌──────────────────────────▼─────────────────────────────────────┐
+│ 5. FRONTEND (Result Display)                                   │
+├────────────────────────────────────────────────────────────────┤
+│   st.info("TẠM HOÃN nghĩa vụ quân sự")                         │
+│   st.write(giai_thich)                                         │
+│   st.expander("Chi tiết suy diễn"):                            │
+│     └─ Display citations & quotes                              │
+└────────────────────────────────────────────────────────────────┘
+```
 ```
 
 ---
