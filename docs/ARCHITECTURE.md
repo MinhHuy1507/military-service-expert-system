@@ -285,7 +285,7 @@ Return JSON Response
 ---
 
 ### 3. Business Logic - Inference Engine
-
+Xem chi tiết ở [docs/inference_engine_design.md](inference_engine_design.md)
 #### Trách nhiệm
 - Load Knowledge Base từ CSTT_v5.json
 - Thực thi thuật toán Forward Chaining
@@ -331,7 +331,7 @@ inference_engine_v4.py
 
 #### Thuật toán Forward Chaining
 [pseudocode_inference_engine.txt](./pseudocode_inference_engine.txt)
-![Forward Chaining](../assets/forward_chaining.png)
+![Forward Chaining](../assets/forward_chaining_v2.png)
 ```
 ALGORITHM: Forward Chaining Inference
 
@@ -449,7 +449,9 @@ Rules được sắp xếp theo mức độ ưu tiên:
 ---
 
 ## Luồng dữ liệu End-to-End
+#### Overview
 ![Luồng dữ liệu](../assets/processing_thread_overview.png)
+#### Detail
 ![Luồng dữ liệu](../assets/processing_thread_detailed.png)
 
 
@@ -484,16 +486,16 @@ Rules được sắp xếp theo mức độ ưu tiên:
 │ 3. INFERENCE ENGINE (Forward Chaining)                         │
 ├────────────────────────────────────────────────────────────────┤
 │   Iteration 1: Priority 100                                    │
-│   ├─ TUOI_1 fires → TIEU_CHUAN_TUOI = "Đạt"                     │
-│   └─ VH_1 fires → TIEU_CHUAN_VAN_HOA = "Đạt"                  │
+│   ├─ TUOI_1 fires → TIEU_CHUAN_TUOI = "Đạt"                    │
+│   └─ VH_1 fires → TIEU_CHUAN_VAN_HOA = "Đạt"                   │
 │                                                                │
 │   Iteration 2: Priority 0                                      │
-│   ├─ SK_1 fires → (No health issues detected)              │
-│   ├─ TAM_HOAN_8 fires → DIEN_HOAN = True                          │
+│   ├─ SK_1 fires → (No health issues detected)                  │
+│   ├─ TAM_HOAN_8 fires → DIEN_HOAN = True                       │
 │   └─         └─ LY_DO_HOAN_DETAIL = "Đang học ĐH..."           │
 │                                                                │
 │   Iteration 3: Priority -50                                    │
-│   └─ FINAL_* fires                                   │
+│   └─ FINAL_* fires                                             │
 │       └─ Add to LY_DO_TONG_HOP: "Thuộc trường hợp..."          │
 │                                                                │
 │   Iteration 4: Priority -100                                   │
