@@ -178,7 +178,11 @@ class InferenceEngine:
             reason_str = ", ".join(unique_reasons)
             
             known_facts["KET_LUAN"] = "KHÔNG ĐỦ ĐIỀU KIỆN GỌI NHẬP NGŨ"
-            known_facts["GIAI_THICH"] = "Lý do: " + reason_str + "."
+            
+            if is_volunteer:
+                known_facts["GIAI_THICH"] = "Công dân tình nguyện nhập ngũ nhưng " + reason_str + "."
+            else:
+                known_facts["GIAI_THICH"] = "Lý do: " + reason_str + "."
 
     def evaluate(self, initial_facts):
         """
