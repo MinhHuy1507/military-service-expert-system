@@ -149,6 +149,26 @@ class InferenceEngine:
         """
         # Get list of reasons. If doesn't exist, default to empty list
         reasons = known_facts.get("LY_DO_TONG_HOP", [])
+        is_volunteer = known_facts.get("tinh_nguyen_nhap_ngu", False)
+
+        # Logic xử lý Tình nguyện:
+        # Nếu tình nguyện, chỉ được bỏ qua các lý do về "Tạm hoãn" hoặc "Miễn".
+        # Vẫn phải đạt tiêu chuẩn về Tuổi, Sức khỏe, Văn hóa.
+        if is_volunteer:
+            # Lọc bỏ các lý do tạm hoãn/miễn
+            filtered_reasons = [
+                r for r in reasons 
+                if r not in ["Thuộc trường hợp miễn", "Thuộc trường hợp tạm hoãn"]
+            ]
+            
+            if len(filtered_reasons) == 0:
+                # Nếu sau khi lọc mà hết lý do -> Đủ điều kiện
+                known_facts["KET_LUAN"] = "ĐỦ ĐIỀU KIỆN GỌI NHẬP NGŨ (Tình nguyện)"
+                known_facts["GIAI_THICH"] = "Công dân tình nguyện nhập ngũ (được ưu tiên xét tuyển dù thuộc diện Tạm hoãn/Miễn)."
+                return
+            else:
+                # Nếu vẫn còn lý do (VD: Sức khỏe, Tuổi) -> Vẫn không đạt
+                reasons = filtered_reasons
         
         if len(reasons) == 0:
             known_facts["KET_LUAN"] = "ĐỦ ĐIỀU KIỆN GỌI NHẬP NGŨ"
@@ -182,7 +202,6 @@ class InferenceEngine:
         known_facts = initial_facts.copy()
         known_facts["KET_LUAN"] = "Không thể đưa ra kết luận"
         known_facts["GIAI_THICH"] = "Không có luật nào phù hợp"
-        known_facts["FINAL_STOP"] = False
         known_facts["LY_DO_TONG_HOP"] = []
         
         solution_trace = {}
@@ -215,10 +234,6 @@ class InferenceEngine:
                             
                             elif 'value' in action:
                                 known_facts[fact_name] = action['value']
-                                if fact_name == "FINAL_STOP" and action['value'] == True:
-                                    print("--- [IE] Volunteer detected, stopping priority inference. ---")
-                                    new_facts_found = False 
-                                    break
 
                         if new_facts_found == False: 
                             break
